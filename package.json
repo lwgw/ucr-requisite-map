@@ -15,11 +15,13 @@
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
+    "simple-svelte-autocomplete": "^2.2.4",
     "svelte": "^3.0.0"
   },
   "dependencies": {
     "chart.js": "^3.6.0",
     "chartjs-chart-graph": "^3.6.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "sirv-cli": "^1.0.0"
   }
 }
