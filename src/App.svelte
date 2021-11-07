@@ -11,11 +11,11 @@
 	let courses = [];
 	let selectedCourse;
 
-	function createChart(nodes, edges) {
+	function createChart(nodes, edges, type) {
 		if (canvas)
 			canvas.destroy();
 		canvas = new Chart(document.getElementById("canvas").getContext("2d"), {
-			type: "dendogram",
+			type,
 			data: {
 				labels: nodes.map((d) => d.name),
 				datasets: [{
@@ -71,7 +71,7 @@
 				nodes.push({ "name": prereq, "x": x, "y": y });
 			})
 		})
-		createChart(nodes, edges);
+		createChart(nodes, edges, "dendogram");
 	}
 
 	onMount(async () => {
