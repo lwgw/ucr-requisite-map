@@ -1,9 +1,10 @@
 <script>
 	import {onMount} from 'svelte';
-	import Chart from 'chart.js/auto' // https://www.chartjs.org/
-	import * as graphs from 'chartjs-chart-graph'; // https://github.com/sgratzl/chartjs-chart-graph
+	import Chart from 'chart.js/auto'; // https://www.chartjs.org/
+	import { DendogramController } from 'chartjs-chart-graph'; // https://github.com/sgratzl/chartjs-chart-graph
 	import AutoComplete from "simple-svelte-autocomplete"; // https://github.com/pstanoev/simple-svelte-autocomplete
 	import ChartDataLabels from 'chartjs-plugin-datalabels'; //https://github.com/chartjs/chartjs-plugin-datalabels
+	Chart.register(DendogramController);
 
 	let loaded = false;
 	let canvas; // canvas that chart.js uses to draw
@@ -11,11 +12,11 @@
 	let courses = [];
 	let selectedCourse;
 
-	function createChart(nodes, edges, type) {
+	function createChart(nodes, edges) {
 		if (canvas)
 			canvas.destroy();
 		canvas = new Chart(document.getElementById("canvas").getContext("2d"), {
-			type,
+			type: DendogramController.id,
 			data: {
 				labels: nodes.map((d) => d.name),
 				datasets: [{
@@ -71,7 +72,7 @@
 				nodes.push({ "name": prereq, "x": x, "y": y });
 			})
 		})
-		createChart(nodes, edges, "dendogram");
+		createChart(nodes, edges);
 	}
 
 	onMount(async () => {
